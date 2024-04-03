@@ -15,17 +15,13 @@ import lombok.Setter;
 @Entity(name = "board")
 @Table(name = "board")
 public class BoardEntity {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer board_number;
+    private Integer boardNumber;
     private String title;
     private String contents;
-    private Integer view_count;
-    private Integer comment_count;
-    private Integer favorite_count;
-    private String write_datetime;
-    private String write_email;
+    private Integer viewCount;
+    private Integer commentCount;
+    private String writeDatetime;
+    private String writerEmail;
 }
-

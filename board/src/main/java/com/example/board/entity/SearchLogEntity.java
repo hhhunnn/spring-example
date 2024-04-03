@@ -1,6 +1,8 @@
 package com.example.board.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -10,13 +12,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity(name = "search_log")
-@Table(name = "search_log")
+@Entity(name = "search")
+@Table(name = "search")
 public class SearchLogEntity {
-    
     @Id
-    private Integer log_sequence;
-    private String search_word;
-    private String relation_word;
-    private Integer relation;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer logSequence;
+    private String searchWord;
+    private String relationWord;    
+    private Boolean relation;
 }
