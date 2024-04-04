@@ -1,16 +1,45 @@
 package com.example.board.dto.response;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+// 코드하고 메세지 사용 <-> AuthServiceImplementation
 
 @Getter
 @AllArgsConstructor
 public class ResponseDto {
     private String code;
     private String message;
+
+    // 인스턴ㄴ스 없이 사용할 메서드
+    public static ResponseEntity<ResponseDto> success() {
+        ResponseDto body = new ResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    public static ResponseEntity<ResponseDto> duplicationEmail() {
+        ResponseDto body = new ResponseDto(ResponseCode.DUPLICATE_EMAIL, ResponseMessage.DUPLICATE_EMAIL);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    public static ResponseEntity<ResponseDto> duplicateNickname() {
+        ResponseDto body = new ResponseDto(ResponseCode.DUPLICATE_NICKNAME, ResponseMessage.DUPLICATE_NICKNAME);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    public static ResponseEntity<ResponseDto> duplicateTelNumber() {
+        ResponseDto body = new ResponseDto(ResponseCode.DUPLICATE_TEL_NUMBER, ResponseMessage.DUPLICATE_TEL_NUMBER);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    public static ResponseEntity<ResponseDto> validationFail() {
+        ResponseDto body = new ResponseDto(ResponseCode.VALIDATION_FAIL, ResponseMessage.VALIDATION_FAIL);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
 
     
     
