@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.board.dto.request.auth.SignUpRequestDto;
+import com.example.board.dto.request.user.PatchNicknameRequestDto;
 import com.example.board.dto.response.ResponseCode;
 import com.example.board.dto.response.ResponseDto;
 import com.example.board.dto.response.ResponseMessage;
@@ -52,6 +53,32 @@ public class UserServiceImplementation implements UserService {
 
     }
 
+
+    // 닉네임 수정
+    @Override
+    public ResponseEntity<ResponseDto> patchNickname(PatchNicknameRequestDto dto) {
+        
+        try {
+
+            String nickname = dto.getNickname();
+            boolean isExistNickname = userRepository.existsByNickname(nickname);
+            if (isExistNickname) return ResponseDto.duplicateNickname();
+            
+            String email = dto.getEmail();
+            UserEntity userEntity = userRepository.findByEmail(email);
+            if (userEntity == null) return ResponseDto.notExistUser();
+
+            userEntity.setNickname(nickname);
+            userRepository.save(userEntity);
+
+            return ResponseDto.success();
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+    }
     
     
 }

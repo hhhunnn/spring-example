@@ -15,7 +15,7 @@ public class ResponseDto {
     private String code;
     private String message;
 
-    // 인스턴ㄴ스 없이 사용할 메서드
+    // 인스턴스 없이 사용할 메서드
     public static ResponseEntity<ResponseDto> success() {
         ResponseDto body = new ResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         return ResponseEntity.status(HttpStatus.OK).body(body);
